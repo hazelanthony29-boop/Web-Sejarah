@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sejarah Indonesia - Lengkap</title>
+  <style>
+    html { scroll-behavior: smooth; }
+
+    :root {
+      --merah: #cc0001;
+      --putih: #f5f0e8;
+      --hitam: #1a1a1a;
+      --coklat: #8b4513;
+      --emas: #c8a840;
+      --abu: #555;
+      --border: #d4b896;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: Georgia, 'Times New Roman', serif;
+      background-color: var(--putih);
+      color: var(--hitam);
+      line-height: 1.75;
+    }
+
+    /* ===== HEADER ===== */
+    header {
+      background: var(--merah);
+      color: white;
+      text-align: center;
+      padding: 40px 20px;
+      border-bottom: 6px solid var(--emas);
+    }
+    header h1 {
+      font-size: 2.8rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    header p {
+      font-size: 1.1rem;
+      margin-top: 8px;
+      opacity: 0.9;
+      font-style: italic;
+    }
+
+    /* ===== NAV ===== */
+    nav {
+      background: var(--hitam);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 3px solid var(--emas);
+      scroll-behavior: smooth;
+    }
+    nav a {
+      color: #ddd;
+      text-decoration: none;
+      padding: 12px 16px;
+      font-size: 0.85rem;
+      letter-spacing: 0.5px;
+      border-right: 1px solid #333;
+      transition: background 0.2s, color 0.2s;
+      font-family: Arial, sans-serif;
+    }
+    nav a:hover { background: var(--merah); color: white; }
+
+    /* ===== LAYOUT ===== */
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* ===== SECTION ===== */
+    section {
+      padding: 50px 0;
+      border-bottom: 2px dashed var(--border);
+    }
+    section:last-of-type { border-bottom: none; }
+
+    h2 {
+      font-size: 1.9rem;
+      color: var(--merah);
+      border-left: 5px solid var(--emas);
+      padding-left: 14px;
+      margin-bottom: 20px;
+    }
+    h3 {
+      font-size: 1.3rem;
+      color: var(--coklat);
+      margin: 24px 0 10px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 4px;
+    }
+    p { margin-bottom: 14px; text-align: justify; }
+
+    /* ===== TIMELINE ===== */
+    .timeline {
+      position: relative;
+      padding-left: 30px;
+      border-left: 3px solid var(--emas);
+      margin-top: 20px;
+    }
+    .tl-item {
+      margin-bottom: 28px;
+      position: relative;
+    }
+    .tl-item::before {
+      content: '';
+      position: absolute;
+      left: -39px;
+      top: 6px;
+      width: 14px;
+      height: 14px;
+      background: var(--merah);
+      border: 2px solid var(--emas);
+      border-radius: 50%;
+    }
+    .tl-tahun {
+      font-weight: bold;
+      color: var(--merah);
+      font-size: 1rem;
+      font-family: Arial, sans-serif;
+    }
+    .tl-judul {
+      font-weight: bold;
+      font-size: 1.05rem;
+      color: var(--hitam);
+    }
+    .tl-desc {
+      font-size: 0.95rem;
+      color: #444;
+    }
+
+    /* ===== TABLE ===== */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 16px;
+      font-size: 0.92rem;
+    }
+    th {
+      background: var(--merah);
+      color: white;
+      padding: 10px 12px;
+      text-align: left;
+    }
+    td {
+      padding: 9px 12px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    tr:nth-child(even) td { background: #f0ebe0; }
+
+    /* ===== INFOBOX ===== */
+    .infobox {
+      background: #fff8ee;
+      border: 1px solid var(--emas);
+      border-left: 5px solid var(--merah);
+      padding: 16px 20px;
+      margin: 20px 0;
+      border-radius: 2px;
+    }
+    .infobox strong { color: var(--merah); }
+
+    /* ===== GRID KERAJAAN ===== */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 18px;
+      margin-top: 20px;
+    }
+    .card {
+      background: white;
+      border: 1px solid var(--border);
+      border-top: 4px solid var(--merah);
+      padding: 16px;
+      border-radius: 2px;
+    }
+    .card h4 {
+      color: var(--coklat);
+      margin-bottom: 6px;
+      font-size: 1rem;
+    }
+    .card p {
+      font-size: 0.88rem;
+      color: #555;
+      margin: 0;
+    }
+    .card .tahun {
+      font-size: 0.8rem;
+      color: var(--emas);
+      font-style: italic;
+      margin-top: 6px;
+      display: block;
+    }
+
+    /* ===== TOKOH ===== */
+    .tokoh-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 16px;
+      margin-top: 20px;
+    }
+    .tokoh-card {
+      background: white;
+      border: 1px solid var(--border);
+      padding: 14px;
+      border-radius: 2px;
+      text-align: center;
+    }
+    .tokoh-icon {
+      font-size: 2.5rem;
+      margin-bottom: 8px;
+    }
+    .tokoh-card h4 {
+      color: var(--hitam);
+      font-size: 0.95rem;
+      margin-bottom: 4px;
+    }
+    .tokoh-card small {
+      color: var(--merah);
+      font-size: 0.8rem;
+      display: block;
+      margin-bottom: 6px;
+    }
+    .tokoh-card p {
+      font-size: 0.82rem;
+      color: #555;
+      text-align: left;
+      margin: 0;
+    }
+
+    /* ===== QUOTE ===== */
+    blockquote {
+      border-left: 4px solid var(--emas);
+      background: #fff8ee;
+      padding: 14px 20px;
+      margin: 20px 0;
+      font-style: italic;
+      color: #444;
+    }
+    blockquote cite {
+      display: block;
+      margin-top: 8px;
+      font-style: normal;
+      font-weight: bold;
+      color: var(--merah);
+      font-size: 0.9rem;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--hitam);
+      color: #aaa;
+      text-align: center;
+      padding: 30px 20px;
+      font-size: 0.85rem;
+      font-family: Arial, sans-serif;
+    }
+    footer strong { color: var(--emas); }
+
+    /* ===== SCROLL TOP ===== */
+    #scrollTop {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--merah);
+      color: white;
+      border: none;
+      padding: 10px 14px;
+      cursor: pointer;
+      font-size: 1.2rem;
+      border-radius: 2px;
+      display: none;
+      z-index: 999;
+    }
+    #scrollTop:hover { background: #a00; }
+
+    @media(max-width:600px) {
+      header h1 { font-size: 1.8rem; }
+      h2 { font-size: 1.4rem; }
+      nav a { font-size: 0.78rem; padding: 10px 10px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <h1>🇮🇩 Sejarah Indonesia</h1>
+    <p>Dari Zaman Prasejarah hingga Era Reformasi — Perjalanan Bangsa yang Besar</p>
+  </div>
+</header>
+
+<nav>
+  <a href="#prasejarah">Prasejarah</a>
+  <a href="#kerajaan">Kerajaan Hindu-Buddha</a>
+  <a href="#islam">Kerajaan Islam</a>
+  <a href="#kolonial">Era Kolonial</a>
+  <a href="#pergerakan">Pergerakan Nasional</a>
+  <a href="#kemerdekaan">Kemerdekaan</a>
+  <a href="#orla">Orde Lama</a>
+  <a href="#orba">Orde Baru</a>
+  <a href="#reformasi">Reformasi</a>
+  <a href="#tokoh">Tokoh Bangsa</a>
+</nav>
+
+<!-- ========== PRASEJARAH ========== -->
+<section id="prasejarah">
+  <div class="container">
+    <h2>1. Zaman Prasejarah</h2>
+
+    <p>Kepulauan Indonesia telah dihuni manusia sejak jutaan tahun yang lalu. Bukti arkeologis menunjukkan bahwa wilayah ini merupakan salah satu tempat tertua hunian manusia purba di Asia Tenggara.</p>
+
+    <h3>Manusia Purba di Indonesia</h3>
+    <div class="grid">
+      <div class="card">
+        <h4>Meganthropus Paleojavanicus</h4>
+        <p>Manusia purba terbesar yang pernah ditemukan. Ditemukan oleh G.H.R. von Koenigswald di Sangiran, Jawa Tengah.</p>
+        <span class="tahun">~2 juta tahun lalu</span>
+      </div>
+      <div class="card">
+        <h4>Pithecanthropus Erectus (Homo Erectus)</h4>
+        <p>Ditemukan oleh Eugene Dubois di Trinil, Ngawi, 1891. Disebut sebagai "Manusia Jawa" yang terkenal di dunia.</p>
+        <span class="tahun">~1 juta tahun lalu</span>
+      </div>
+      <div class="card">
+        <h4>Homo Wajakensis</h4>
+        <p>Ditemukan di Wajak, Tulungagung. Diperkirakan merupakan nenek moyang ras Australoid dan Melanesoid.</p>
+        <span class="tahun">~40.000 tahun lalu</span>
+      </div>
+      <div class="card">
+        <h4>Homo Floresiensis</h4>
+        <p>Ditemukan di Liang Bua, Flores (2003). Bertubuh sangat kecil (~1 meter), dijuluki "Hobbit" oleh ilmuwan.</p>
+        <span class="tahun">~50.000–18.000 tahun lalu</span>
+      </div>
+    </div>
+
+    <h3>Pembabakan Zaman Prasejarah</h3>
+    <table>
+      <tr><th>Zaman</th><th>Ciri Utama</th><th>Peninggalan</th></tr>
+      <tr><td>Paleolitikum</td><td>Nomaden, berburu-meramu, alat batu kasar</td><td>Kapak perimbas, kapak genggam</td></tr>
+      <tr><td>Mesolitikum</td><td>Semi-nomaden, mulai menetap di gua</td><td>Kjokkenmoddinger (sampah dapur), abris sous roche</td></tr>
+      <tr><td>Neolitikum</td><td>Bercocok tanam, hidup menetap</td><td>Kapak persegi, kapak lonjong, gerabah</td></tr>
+      <tr><td>Megalitikum</td><td>Bangunan batu besar, pemujaan leluhur</td><td>Menhir, dolmen, sarkofagus, waruga</td></tr>
+      <tr><td>Perunggu & Besi</td><td>Mengenal logam, perdagangan awal</td><td>Nekara, moko, arca perunggu</td></tr>
+    </table>
+
+    <h3>Situs Penting</h3>
+    <p><strong>Sangiran (Jawa Tengah)</strong> — Situs warisan dunia UNESCO. Ditemukan lebih dari 100 fosil Homo Erectus. <strong>Situs Trinil (Ngawi)</strong> — Tempat penemuan pertama Pithecanthropus Erectus oleh Eugene Dubois (1891). <strong>Song Keplek & Liang Bua (Flores)</strong> — Situs penemuan Homo Floresiensis.</p>
+  </div>
+</section>
+
+<!-- ========== KERAJAAN HINDU-BUDDHA ========== -->
+<section id="kerajaan">
+  <div class="container">
+    <h2>2. Kerajaan Hindu-Buddha</h2>
+
+    <p>Sekitar abad ke-1 M, pengaruh agama Hindu dan Buddha masuk ke Nusantara melalui jalur perdagangan dengan India. Kemudian lahir kerajaan-kerajaan besar yang meninggalkan warisan peradaban luar biasa.</p>
+
+    <div class="infobox">
+      <strong>Teori Masuknya Hindu-Buddha:</strong> Ada beberapa teori, antara lain Teori Brahmana (para pendeta India datang ke Nusantara), Teori Ksatria (penakluk membawa agama), Teori Waisya (pedagang sebagai perantara), dan Teori Sudra (kaum bawah yang berimigrasi).
+    </div>
+
+    <h3>Kerajaan-Kerajaan Utama</h3>
+    <div class="grid">
+      <div class="card">
+        <h4>Kutai Kartanegara</h4>
+        <p>Kerajaan Hindu tertua di Indonesia. Berdiri di tepi Sungai Mahakam, Kalimantan Timur. Dipimpin Raja Mulawarman. Peninggalan: 7 prasasti Yupa.</p>
+        <span class="tahun">Abad ke-4 M</span>
+      </div>
+      <div class="card">
+        <h4>Tarumanegara</h4>
+        <p>Kerajaan Hindu di Jawa Barat. Raja Purnawarman memerintahkan penggalian Sungai Gomati. Peninggalan: Prasasti Ciaruteun, Kebon Kopi, dll.</p>
+        <span class="tahun">Abad ke-4–7 M</span>
+      </div>
+      <div class="card">
+        <h4>Sriwijaya</h4>
+        <p>Kerajaan Buddha terbesar di Asia Tenggara. Berpusat di Palembang, menguasai jalur perdagangan Selat Malaka. Pusat pembelajaran agama Buddha.</p>
+        <span class="tahun">Abad ke-7–13 M</span>
+      </div>
+      <div class="card">
+        <h4>Mataram Kuno</h4>
+        <p>Membangun Candi Borobudur (Buddha) dan Candi Prambanan (Hindu). Dua dinasti: Syailendra (Buddha) dan Sanjaya (Hindu).</p>
+        <span class="tahun">Abad ke-8–10 M</span>
+      </div>
+      <div class="card">
+        <h4>Kediri</h4>
+        <p>Pusat kebudayaan sastra Jawa berkembang pesat. Karya Mpu Sedah & Mpu Panuluh: Kitab Bharatayudha. Raja Jayabaya terkenal dengan ramalannya.</p>
+        <span class="tahun">1042–1222 M</span>
+      </div>
+      <div class="card">
+        <h4>Singasari</h4>
+        <p>Didirikan Ken Arok. Raja terbesar: Kertanegara yang memiliki visi Nusantara. Mengirim ekspedisi Pamalayu ke Sumatera.</p>
+        <span class="tahun">1222–1292 M</span>
+      </div>
+      <div class="card">
+        <h4>Majapahit</h4>
+        <p>Kerajaan terbesar di Nusantara. Mahapatih Gajah Mada bersumpah Palapa: menyatukan seluruh Nusantara. Puncak kejayaan di bawah Hayam Wuruk.</p>
+        <span class="tahun">1293–1527 M</span>
+      </div>
+      <div class="card">
+        <h4>Pajajaran (Sunda)</h4>
+        <p>Kerajaan Hindu terakhir di Jawa Barat. Prabu Siliwangi menjadi raja legendaris yang sangat dihormati. Ibu kota di Pakuan Pajajaran.</p>
+        <span class="tahun">1482–1579 M</span>
+      </div>
+    </div>
+
+    <h3>Peninggalan Bersejarah</h3>
+    <table>
+      <tr><th>Nama</th><th>Lokasi</th><th>Keterangan</th></tr>
+      <tr><td>Candi Borobudur</td><td>Magelang, Jawa Tengah</td><td>Candi Buddha terbesar di dunia, Warisan UNESCO</td></tr>
+      <tr><td>Candi Prambanan</td><td>Yogyakarta</td><td>Candi Hindu terbesar di Indonesia, Warisan UNESCO</td></tr>
+      <tr><td>Candi Muara Takus</td><td>Riau</td><td>Peninggalan Kerajaan Sriwijaya</td></tr>
+      <tr><td>Candi Singosari</td><td>Malang, Jawa Timur</td><td>Peninggalan Kerajaan Singasari</td></tr>
+      <tr><td>Prasasti Yupa</td><td>Kutai, Kalimantan Timur</td><td>Bukti kerajaan tertua di Indonesia</td></tr>
+      <tr><td>Kitab Negarakertagama</td><td>—</td><td>Karya Mpu Prapanca, memuat daftar wilayah Majapahit</td></tr>
+    </table>
+
+    <blockquote>
+      "Sumpah Palapa: Lamun huwus kalah Nusantara isun amukti palapa, lamun kalah ring Gurun, ring Seran, Tañjung Pura, ring Haru, ring Pahang, Dompo, ring Bali, Sunda, Palembang, Tumasik, samana isun amukti palapa."
+      <cite>— Mahapatih Gajah Mada, ~1336 M</cite>
+    </blockquote>
+  </div>
+</section>
+
+<!-- ========== KERAJAAN ISLAM ========== -->
+<section id="islam">
+  <div class="container">
+    <h2>3. Kerajaan-Kerajaan Islam</h2>
+
+    <p>Islam masuk ke Nusantara melalui jalur perdagangan sejak abad ke-7 M, namun baru berkembang pesat sekitar abad ke-13 M. Para pedagang Arab, India (Gujarat), dan Cina berperan penting dalam penyebaran Islam.</p>
+
+    <div class="infobox">
+      <strong>Wali Songo</strong> adalah sembilan wali (tokoh penyebar Islam) yang berjasa menyebarkan Islam di Jawa dengan pendekatan budaya dan kearifan lokal: Maulana Malik Ibrahim, Sunan Ampel, Sunan Bonang, Sunan Drajat, Sunan Giri, Sunan Kudus, Sunan Kalijaga, Sunan Muria, dan Sunan Gunung Jati.
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <h4>Kerajaan Samudra Pasai</h4>
+        <p>Kerajaan Islam pertama di Indonesia, di Aceh. Didirikan Sultan Malikul Saleh. Menjadi pusat perdagangan dan penyebaran Islam.</p>
+        <span class="tahun">Abad ke-13 M</span>
+      </div>
+      <div class="card">
+        <h4>Kesultanan Malaka</h4>
+        <p>Pusat perdagangan internasional terpenting di Asia Tenggara. Menguasai Selat Malaka hingga ditaklukkan Portugis (1511).</p>
+        <span class="tahun">1400–1511 M</span>
+      </div>
+      <div class="card">
+        <h4>Kesultanan Demak</h4>
+        <p>Kerajaan Islam pertama di Jawa. Didirikan Raden Patah. Menghancurkan Majapahit. Masjid Agung Demak dibangun oleh Wali Songo.</p>
+        <span class="tahun">1478–1554 M</span>
+      </div>
+      <div class="card">
+        <h4>Kesultanan Aceh Darussalam</h4>
+        <p>Kerajaan Islam terkuat di Nusantara. Sultan Iskandar Muda membawa ke puncak kejayaan. Lama berjuang melawan Belanda hingga abad ke-20.</p>
+        <span class="tahun">1496–1903 M</span>
+      </div>
+      <div class="card">
+        <h4>Kesultanan Mataram Islam</h4>
+        <p>Pendiri: Panembahan Senopati. Sultan Agung Hanyakrakusuma menyerang Batavia (1628–1629). Warisan budaya Jawa Islam sangat kuat.</p>
+        <span class="tahun">1587–1755 M</span>
+      </div>
+      <div class="card">
+        <h4>Kesultanan Ternate & Tidore</h4>
+        <p>Penguasa rempah-rempah (cengkeh dan pala) di Maluku. Menjadi rebutan bangsa Eropa: Portugis, Spanyol, dan Belanda.</p>
+        <span class="tahun">Abad ke-14–19 M</span>
+      </div>
+      <div class="card">
+        <h4>Kesultanan Gowa-Tallo (Makassar)</h4>
+        <p>Kerajaan Islam terkuat di Sulawesi. Raja Hasanuddin dijuluki "Ayam Jantan dari Timur". Perjanjian Bongaya (1667) memaksa tunduk pada VOC.</p>
+        <span class="tahun">Abad ke-16–17 M</span>
+      </div>
+      <div class="card">
+        <h4>Kesultanan Banjar</h4>
+        <p>Kerajaan Islam di Kalimantan Selatan. Pangeran Samudera (Sultan Suriansyah) sebagai sultan pertama. Perang Banjar melawan Belanda (1859–1905).</p>
+        <span class="tahun">1520–1905 M</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== ERA KOLONIAL ========== -->
+<section id="kolonial">
+  <div class="container">
+    <h2>4. Era Kolonial</h2>
+
+    <h3>Kedatangan Bangsa Eropa</h3>
+    <p>Bangsa Eropa datang ke Nusantara terutama untuk mencari rempah-rempah yang bernilai tinggi di pasaran Eropa. Mereka datang berturut-turut: Portugis, Spanyol, Inggris, dan Belanda.</p>
+
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-tahun">1511</div>
+        <div class="tl-judul">Portugis Menguasai Malaka</div>
+        <div class="tl-desc">Alfonso de Albuquerque menaklukkan Malaka. Portugis menguasai jalur rempah-rempah ke Maluku.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-tahun">1512</div>
+        <div class="tl-judul">Portugis Tiba di Maluku</div>
+        <div class="tl-desc">Ekspedisi Francisco Serrão tiba di Ternate. Portugis membangun Benteng São João di Ternate.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-tahun">1596</div>
+        <div class="tl-judul">Belanda Pertama Kali Tiba</div>
+        <div class="tl-desc">Armada Belanda pimpinan Cornelis de Houtman tiba di Banten. Awal hubungan Belanda dengan Nusantara.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-tahun">1602</div>
+        <div class="tl-judul">VOC Didirikan</div>
+        <div class="tl-desc">Vereenigde Oost-Indische Compagnie (VOC) didirikan di Belanda. Perusahaan dagang ini mendapat hak monopoli perdagangan di Asia.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-tahun">1619</div>
+        <div class="tl-judul">Batavia Didirikan</div>
+        <div class="tl-desc">Jan Pieterszoon Coen mendirikan Batavia (sekarang Jakarta) sebagai pusat pemerintahan VOC di Asia.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-tahun">1799</div>
+        <div class="tl-judul">VOC Bubar</div>
+        <div class="tl-desc">VOC dinyatakan bangkrut dan dibubarkan. Wilayah jajahannya diserahkan kepada pemerintah Kerajaan Belanda (Hindia Belanda).</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-tahun">1808–1811</div>
+        <div class="tl-judul">Herman Daendels (Gubernur Jenderal)</div>
+        <div class="tl-desc">Membangun Jalan Raya Pos (Anyer–Panarukan) sepanjang ±1.000 km menggunakan kerja paksa (rodi). Ribuan rakyat meninggal dalam pembangunan ini.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-tahun">1811–1816</div>
+        <div class="tl-judul">Kekuasaan Inggris (Raffles)</div>
+        <div class="tl-desc">Thomas Stamford Raffles menjadi Gubernur Jenderal Hindia. Membuat buku "History of Java". Menghapus kerja rodi, memperkenalkan sistem sewa tanah.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-tahun">1830</div>
+        <div class="tl-judul">Tanam Paksa (Cultuurstelsel)</div>
+        <div class="tl-desc">Van den Bosch memperkenalkan Tanam Paksa: rakyat wajib menanam 1/5 tanahnya untuk tanaman ekspor (kopi, teh, tebu, nila). Penderitaan rakyat sangat besar.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-tahun">1870</div>
+        <div class="tl-judul">Politik Liberal & Agraria</div>
+        <div class="tl-desc">Tanam paksa dihapus. Undang-undang Agraria membuka investasi swasta. Perusahaan-perusahaan swasta Belanda masuk ke Indonesia.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-tahun">1901</div>
+        <div class="tl-judul">Politik Etis</div>
+        <div class="tl-desc">Ratu Wilhelmina mengumumkan Politik Etis: Irigasi, Transmigrasi, dan Edukasi. Dampak positif: lahirnya kaum terpelajar pribumi yang kemudian menjadi pelopor kebangkitan nasional.</div>
+      </div>
+    </div>
+
+    <h3>Perlawanan Rakyat Terhadap Penjajah</h3>
+    <table>
+      <tr><th>Perlawanan</th><th>Tokoh</th><th>Tahun</th><th>Keterangan</th></tr>
+      <tr><td>Perlawanan Aceh</td><td>Sultan Iskandar Muda, Cut Nyak Dien, Teuku Umar</td><td>1873–1905</td><td>Perang terlama & terberat bagi Belanda</td></tr>
+      <tr><td>Perang Diponegoro</td><td>Pangeran Diponegoro</td><td>1825–1830</td><td>Belanda kehilangan 8.000 tentara & biaya besar</td></tr>
+      <tr><td>Perang Padri</td><td>Tuanku Imam Bonjol</td><td>1821–1837</td><td>Perlawanan di Sumatra Barat</td></tr>
+      <tr><td>Perang Banjar</td><td>Pangeran Antasari</td><td>1859–1905</td><td>Perlawanan di Kalimantan Selatan</td></tr>
+      <tr><td>Perlawanan Bali</td><td>I Gusti Ngurah Rai</td><td>1848–1908</td><td>Puputan Badung & Klungkung</td></tr>
+      <tr><td>Perlawanan Maluku</td><td>Pattimura (Thomas Matulessy)</td><td>1817</td><td>Perlawanan di Maluku terhadap Belanda</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- ========== PERGERAKAN NASIONAL ========== -->
+<section id="pergerakan">
+  <div class="container">
+    <h2>5. Pergerakan Nasional</h2>
+
+    <p>Kebangkitan nasionalisme Indonesia tidak terjadi dalam semalam. Diawali dari kesadaran kaum terpelajar akan penderitaan bangsa dan perlunya persatuan untuk melawan kolonialisme.</p>
+
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-tahun">1908</div>
+        <div class="tl-judul">Budi Utomo Berdiri (20 Mei)</div>
+        <div class="tl-desc">Organisasi modern pertama. Didirikan oleh Dr. Wahidin Sudirohusodo dan mahasiswa STOVIA (Soetomo, dll). Tanggal berdirinya diperingati sebagai Hari Kebangkitan Nasional.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-tahun">1912</div>
+        <div class="tl-judul">Sarekat Islam Berdiri</div>
+        <div class="tl-desc">Didirikan H. Samanhudi di Solo, kemudian dipimpin H.O.S. Tjokroaminoto. Organisasi massa terbesar pertama dengan jutaan anggota.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-tahun">1912</div>
+        <div class="tl-judul">Indische Partij</div>
+        <div class="tl-desc">Didirikan "Tiga Serangkai": Douwes Dekker, Ki Hajar Dewantara, dan Cipto Mangunkusumo. Partai politik pertama yang terang-terangan menuntut kemerdekaan.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-tahun">1920</div>
+        <div class="tl-judul">PKI (Partai Komunis Indonesia)</div>
+        <div class="tl-desc">Didirikan Semaun dan Darsono. Partai komunis pertama di Asia. Melakukan pemberontakan 1926 yang kemudian ditumpas Belanda.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-tahun">1927</div>
+        <div class="tl-judul">PNI Berdiri</div>
+        <div class="tl-desc">Partai Nasional Indonesia didirikan Soekarno. Berlandaskan nasionalisme, demokrasi, dan sosialisme. Soekarno ditangkap dan dipenjara oleh Belanda (1929).</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-tahun">28 Oktober 1928</div>
+        <div class="tl-judul">Sumpah Pemuda</div>
+        <div class="tl-desc">Kongres Pemuda II menghasilkan Sumpah Pemuda: Satu Tanah Air Indonesia, Satu Bangsa Indonesia, Menjunjung Bahasa Persatuan Bahasa Indonesia. Lagu "Indonesia Raya" karya W.R. Supratman diperdengarkan pertama kali.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-tahun">1942</div>
+        <div class="tl-judul">Jepang Masuk Indonesia</div>
+        <div class="tl-desc">Jepang mengusir Belanda dari Indonesia. Awalnya disambut sebagai pembebas, namun Jepang menerapkan kebijakan yang tidak kalah kejamnya (romusha).</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-tahun">1945</div>
+        <div class="tl-judul">Pembentukan BPUPKI & PPKI</div>
+        <div class="tl-desc">Badan Penyelidik Usaha Persiapan Kemerdekaan Indonesia (BPUPKI) dibentuk Jepang. Merumuskan dasar negara (Pancasila) dan Undang-Undang Dasar 1945.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== KEMERDEKAAN ========== -->
+<section id="kemerdekaan">
+  <div class="container">
+    <h2>6. Proklamasi Kemerdekaan</h2>
+
+    <div class="infobox">
+      <strong>17 Agustus 1945</strong> — Proklamasi Kemerdekaan Indonesia dibacakan oleh Soekarno dan Hatta di Jalan Pegangsaan Timur No. 56, Jakarta, pukul 10.00 WIB. Inilah hari lahirnya Republik Indonesia sebagai negara merdeka dan berdaulat.
+    </div>
+
+    <h3>Peristiwa Menjelang Proklamasi</h3>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-tahun">6 & 9 Agustus 1945</div>
+        <div class="tl-judul">Bom Atom Hiroshima & Nagasaki</div>
+        <div class="tl-desc">Amerika Serikat menjatuhkan bom atom di Hiroshima dan Nagasaki. Jepang melemah drastis.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-tahun">14–15 Agustus 1945</div>
+        <div class="tl-judul">Peristiwa Rengasdengklok</div>
+        <div class="tl-desc">Pemuda (Chaerul Saleh, Sukarni, dll) "menculik" Soekarno dan Hatta ke Rengasdengklok agar segera memproklamasikan kemerdekaan tanpa menunggu Jepang.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-tahun">15–16 Agustus 1945</div>
+        <div class="tl-judul">Perumusan Teks Proklamasi</div>
+        <div class="tl-desc">Teks proklamasi dirumuskan di rumah Laksamana Maeda. Ditulis tangan oleh Soekarno, diketik oleh Sayuti Melik. Ditandatangani atas nama Bangsa Indonesia.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-tahun">17 Agustus 1945</div>
+        <div class="tl-judul">PROKLAMASI KEMERDEKAAN</div>
+        <div class="tl-desc">Pukul 10.00 WIB, Soekarno membacakan teks proklamasi. Bendera Merah Putih dikibarkan. Indonesia merdeka!</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-tahun">18 Agustus 1945</div>
+        <div class="tl-judul">Pengesahan UUD 1945 & Pemilihan Presiden</div>
+        <div class="tl-desc">PPKI mengesahkan UUD 1945, memilih Soekarno sebagai Presiden dan Moh. Hatta sebagai Wakil Presiden pertama.</div>
+      </div>
+    </div>
+
+    <blockquote>
+      "Kami bangsa Indonesia dengan ini menyatakan kemerdekaan Indonesia. Hal-hal yang mengenai pemindahan kekuasaan dan lain-lain diselenggarakan dengan cara seksama dan dalam tempo yang sesingkat-singkatnya."
+      <cite>— Teks Proklamasi, 17 Agustus 1945</cite>
+    </blockquote>
+
+    <h3>Perjuangan Mempertahankan Kemerdekaan (1945–1949)</h3>
+    <table>
+      <tr><th>Peristiwa</th><th>Tanggal</th><th>Keterangan</th></tr>
+      <tr><td>Pertempuran Surabaya</td><td>10 November 1945</td><td>Arek-arek Surabaya melawan Inggris. Bung Tomo membakar semangat. Diperingati sebagai Hari Pahlawan.</td></tr>
+      <tr><td>Pertempuran Ambarawa</td><td>Nov–Des 1945</td><td>Jenderal Sudirman memimpin perlawanan di Ambarawa. Belanda-Inggris mundur.</td></tr>
+      <tr><td>Bandung Lautan Api</td><td>23 Maret 1946</td><td>Masyarakat Bandung membakar kota agar tidak dimanfaatkan Belanda.</td></tr>
+      <tr><td>Agresi Militer Belanda I</td><td>21 Juli 1947</td><td>Belanda menyerang wilayah RI. Mendapat kecaman internasional.</td></tr>
+      <tr><td>Agresi Militer Belanda II</td><td>19 Des 1948</td><td>Belanda menyerbu Yogyakarta, menangkap Soekarno-Hatta. Serangan Umum 1 Maret 1949 dipimpin Sudirman & Soeharto.</td></tr>
+      <tr><td>KMB (Konferensi Meja Bundar)</td><td>27 Des 1949</td><td>Belanda mengakui kedaulatan Indonesia. Indonesia resmi merdeka secara internasional.</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- ========== ORDE LAMA ========== -->
+<section id="orla">
+  <div class="container">
+    <h2>7. Orde Lama (1945–1966)</h2>
+
+    <p>Era pemerintahan Presiden Soekarno. Diwarnai pergolakan politik, percobaan berbagai sistem pemerintahan, dan semangat antikolonialisme yang kuat di kancah internasional.</p>
+
+    <h3>Sistem Pemerintahan yang Berganti-ganti</h3>
+    <table>
+      <tr><th>Periode</th><th>Sistem</th><th>Ciri Utama</th></tr>
+      <tr><td>1945–1949</td><td>Presidensial</td><td>UUD 1945 berlaku, Soekarno-Hatta memimpin</td></tr>
+      <tr><td>1949–1950</td><td>RIS (Serikat)</td><td>Hasil KMB, 16 negara bagian</td></tr>
+      <tr><td>1950–1959</td><td>Liberal/Parlementer</td><td>UUDS 1950 berlaku, kabinet sering berganti</td></tr>
+      <tr><td>1959–1966</td><td>Demokrasi Terpimpin</td><td>Dekret Presiden 5 Juli 1959, kembali ke UUD 1945</td></tr>
+    </table>
+
+    <h3>Peristiwa Penting Orde Lama</h3>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-tahun">1955</div>
+        <div class="tl-judul">Pemilu Pertama</div>
+        <div class="tl-desc">Pemilihan umum pertama Indonesia. PNI, Masyumi, NU, dan PKI menjadi partai terbesar. Dianggap sebagai pemilu paling demokratis.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-tahun">1955</div>
+        <div class="tl-judul">Konferensi Asia Afrika</div>
+        <div class="tl-desc">Konferensi bersejarah di Bandung. 29 negara Asia-Afrika berkumpul. Melahirkan Dasasila Bandung. Soekarno tampil sebagai pemimpin dunia ketiga.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-tahun">1959</div>
+        <div class="tl-judul">Dekret Presiden</div>
+        <div class="tl-desc">Soekarno mengeluarkan Dekret 5 Juli 1959: membubarkan Konstituante, kembali ke UUD 1945, dan memulai era Demokrasi Terpimpin.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-tahun">1962</div>
+        <div class="tl-judul">Pembebasan Irian Barat</div>
+        <div class="tl-desc">Melalui Operasi Mandala dan tekanan internasional, Irian Barat diserahkan ke Indonesia. Pepera (1969) menyatakan Irian Barat bergabung ke Indonesia.</td></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-tahun">30 Sept–1 Okt 1965</div>
+        <div class="tl-judul">G30S/PKI</div>
+        <div class="tl-desc">Peristiwa kelam: tujuh jenderal TNI AD dibunuh. Pemerintah menyatakan PKI sebagai dalang. Ratusan ribu orang yang diduga anggota PKI dibunuh atau dipenjara. Hingga kini masih menjadi kontroversi sejarah.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-tahun">1966</div>
+        <div class="tl-judul">Supersemar</div>
+        <div class="tl-desc">Soekarno mengeluarkan Surat Perintah 11 Maret (Supersemar) kepada Soeharto. Menandai berakhirnya kekuasaan Soekarno dan lahirnya Orde Baru.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== ORDE BARU ========== -->
+<section id="orba">
+  <div class="container">
+    <h2>8. Orde Baru (1966–1998)</h2>
+
+    <p>Era pemerintahan Soeharto selama 32 tahun. Ditandai dengan stabilitas politik (meski represif), pertumbuhan ekonomi yang signifikan, namun juga korupsi, kolusi, nepotisme (KKN), dan pelanggaran HAM yang besar.</p>
+
+    <h3>Capaian Ekonomi Orde Baru</h3>
+    <div class="grid">
+      <div class="card">
+        <h4>Swasembada Pangan</h4>
+        <p>Indonesia berhasil mencapai swasembada beras pada 1984 dan mendapat penghargaan dari FAO (PBB).</p>
+      </div>
+      <div class="card">
+        <h4>Pertumbuhan Ekonomi</h4>
+        <p>Rata-rata pertumbuhan ekonomi 6–7% per tahun. Pendapatan per kapita naik drastis dari $70 (1966) menjadi lebih dari $1.000 (1996).</p>
+      </div>
+      <div class="card">
+        <h4>Program KB</h4>
+        <p>Keluarga Berencana sukses menekan laju pertumbuhan penduduk. Mendapat pujian dari PBB sebagai program KB terbaik dunia.</p>
+      </div>
+      <div class="card">
+        <h4>Infrastruktur & Pendidikan</h4>
+        <p>Pembangunan masif: jalan, jembatan, sekolah (Inpres SD), rumah sakit, dan peningkatan angka melek huruf nasional.</p>
+      </div>
+    </div>
+
+    <h3>Pelanggaran & Permasalahan Orde Baru</h3>
+    <table>
+      <tr><th>Permasalahan</th><th>Keterangan</th></tr>
+      <tr><td>Korupsi, Kolusi, Nepotisme</td><td>Soeharto dan keluarganya menguasai banyak sektor bisnis. Kroni-kroni mendapat proyek dan lisensi negara.</td></tr>
+      <tr><td>Pembungkaman Oposisi</td><td>Pers dikontrol ketat. Kritik terhadap pemerintah bisa berakibat penjara. Partai politik (hanya PPP, Golkar, PDI) dikontrol penuh.</td></tr>
+      <tr><td>Pelanggaran HAM</td><td>Penghilangan aktivis, Tragedi Tanjung Priok (1984), kasus Timor Timur, Papua, dan Aceh.</td></tr>
+      <tr><td>Krisis Ekonomi 1997–1998</td><td>Krisis moneter Asia menghancurkan rupiah. Pengangguran melonjak, harga kebutuhan pokok naik drastis.</td></tr>
+    </table>
+
+    <h3>Peristiwa Penting Orde Baru</h3>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-tahun">1975</div>
+        <div class="tl-judul">Integrasi Timor Timur</div>
+        <div class="tl-desc">Indonesia menginvasi Timor Timur setelah Portugal meninggalkan bekas jajahannya. Timor Timur menjadi provinsi ke-27. Proses ini diwarnai banyak pelanggaran HAM.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-tahun">1997–1998</div>
+        <div class="tl-judul">Krisis Moneter</div>
+        <div class="tl-desc">Krisis keuangan Asia melanda Indonesia. Rupiah jatuh dari Rp2.500 menjadi lebih dari Rp16.000 per dolar AS. Ekonomi kolaps.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-tahun">Mei 1998</div>
+        <div class="tl-judul">Kerusuhan Mei 1998</div>
+        <div class="tl-desc">Kerusuhan besar melanda Jakarta dan kota-kota lain. Ribuan orang meninggal. Toko-toko dijarah dan dibakar. Tragedi kemanusiaan besar.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-tahun">21 Mei 1998</div>
+        <div class="tl-judul">Soeharto Mengundurkan Diri</div>
+        <div class="tl-desc">Setelah tekanan mahasiswa dan rakyat yang masif (reformasi), Soeharto mengumumkan pengunduran dirinya. B.J. Habibie dilantik sebagai Presiden ke-3.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== REFORMASI ========== -->
+<section id="reformasi">
+  <div class="container">
+    <h2>9. Era Reformasi (1998–Sekarang)</h2>
+
+    <p>Era Reformasi dimulai setelah jatuhnya Soeharto. Ditandai dengan demokratisasi, desentralisasi kekuasaan, kebebasan pers, dan penghapusan berbagai peraturan represif. Indonesia bertransformasi menjadi demokrasi terbesar ketiga di dunia.</p>
+
+    <h3>Presiden-Presiden Indonesia</h3>
+    <table>
+      <tr><th>No</th><th>Nama</th><th>Periode</th><th>Partai/Latar Belakang</th><th>Catatan Penting</th></tr>
+      <tr><td>1</td><td>Ir. Soekarno</td><td>1945–1967</td><td>PNI</td><td>Bapak Proklamator, Pemimpin Orde Lama</td></tr>
+      <tr><td>2</td><td>H.M. Soeharto</td><td>1967–1998</td><td>Golkar/TNI</td><td>32 tahun berkuasa, mundur akibat Reformasi</td></tr>
+      <tr><td>3</td><td>B.J. Habibie</td><td>1998–1999</td><td>Golkar</td><td>Kebebasan pers, referendum Timor Timur</td></tr>
+      <tr><td>4</td><td>K.H. Abdurrahman Wahid (Gus Dur)</td><td>1999–2001</td><td>PKB</td><td>Dimakzulkan MPR, tokoh pluralisme</td></tr>
+      <tr><td>5</td><td>Megawati Soekarnoputri</td><td>2001–2004</td><td>PDIP</td><td>Presiden perempuan pertama Indonesia</td></tr>
+      <tr><td>6</td><td>Susilo Bambang Yudhoyono</td><td>2004–2014</td><td>Demokrat</td><td>Presiden pertama dipilih langsung rakyat, 2 periode</td></tr>
+      <tr><td>7</td><td>Joko Widodo (Jokowi)</td><td>2014–2024</td><td>PDIP</td><td>Presiden dari kalangan rakyat biasa, 2 periode</td></tr>
+      <tr><td>8</td><td>Prabowo Subianto</td><td>2024–sekarang</td><td>Gerindra</td><td>Mantan Danjen Kopassus, Menhan era Jokowi</td></tr>
+    </table>
+
+    <h3>Tonggak Penting Era Reformasi</h3>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-tahun">1999</div>
+        <div class="tl-judul">Pemilu Bebas Pertama</div>
+        <div class="tl-desc">Pemilu multipartai pertama yang bebas setelah Orde Baru. 48 partai ikut serta. PDIP meraih suara terbanyak.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-tahun">1999</div>
+        <div class="tl-judul">Referendum Timor Timur</div>
+        <div class="tl-desc">Rakyat Timor Timur memilih merdeka dari Indonesia (78,5% pro-kemerdekaan). Timor Timur resmi merdeka sebagai Timor Leste pada 2002.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-tahun">2001–2004</div>
+        <div class="tl-judul">Amandemen UUD 1945</div>
+        <div class="tl-desc">UUD 1945 diamandemen empat kali. Perubahan besar: pemilihan presiden langsung, pembentukan MK, DPD, dan penguatan HAM.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-tahun">2004</div>
+        <div class="tl-judul">Pilpres Langsung Pertama</div>
+        <div class="tl-desc">Susilo Bambang Yudhoyono terpilih sebagai presiden dalam pemilihan langsung pertama oleh rakyat Indonesia.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-tahun">26 Des 2004</div>
+        <div class="tl-judul">Tsunami Aceh</div>
+        <div class="tl-desc">Gempa 9,1 SR memicu tsunami dahsyat. Lebih dari 200.000 jiwa meninggal di Aceh. Bencana terbesar dalam sejarah modern Indonesia. Damai Aceh (MOU Helsinki 2005) tercapai.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-tahun">2002</div>
+        <div class="tl-judul">KPK Dibentuk</div>
+        <div class="tl-desc">Komisi Pemberantasan Korupsi (KPK) dibentuk sebagai lembaga independen pemberantas korupsi.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-tahun">2014–2024</div>
+        <div class="tl-judul">Era Jokowi</div>
+        <div class="tl-desc">Pembangunan infrastruktur masif: jalan tol, MRT, kereta cepat, bandara, pelabuhan. Program kartu sosial (KIS, KIP, KKS). Ibu kota baru Nusantara di Kalimantan Timur dicanangkan.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-tahun">2024</div>
+        <div class="tl-judul">Prabowo-Gibran Menang Pilpres</div>
+        <div class="tl-desc">Prabowo Subianto berpasangan dengan Gibran Rakabuming Raka memenangkan Pilpres 2024. Dilantik Oktober 2024.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== TOKOH BANGSA ========== -->
+<section id="tokoh">
+  <div class="container">
+    <h2>10. Tokoh-Tokoh Penting Bangsa</h2>
+
+    <div class="tokoh-list">
+      <div class="tokoh-card">
+        <div class="tokoh-icon">👨‍💼</div>
+        <h4>Ir. Soekarno</h4>
+        <small>Proklamator & Presiden ke-1</small>
+        <p>Bapak Bangsa Indonesia. Perumus Pancasila, pembaca teks proklamasi, pemimpin karismatik yang menyatukan bangsa.</p>
+      </div>
+      <div class="tokoh-card">
+        <div class="tokoh-icon">🎓</div>
+        <h4>Mohammad Hatta</h4>
+        <small>Proklamator & Wakil Presiden ke-1</small>
+        <p>Bapak Koperasi Indonesia. Negarawan, ekonom, dan cendekiawan yang dikenal jujur dan bersahaja.</p>
+      </div>
+      <div class="tokoh-card">
+        <div class="tokoh-icon">⚔️</div>
+        <h4>Jenderal Sudirman</h4>
+        <small>Panglima Besar TNI Pertama</small>
+        <p>Memimpin perang gerilya saat sakit parah. Simbol keteguhan dan pengorbanan tentara Indonesia.</p>
+      </div>
+      <div class="tokoh-card">
+        <div class="tokoh-icon">✍️</div>
+        <h4>Ki Hajar Dewantara</h4>
+        <small>Bapak Pendidikan Nasional</small>
+        <p>Mendirikan Taman Siswa (1922). Semboyan: "Ing ngarso sung tulodho, ing madya mangun karso, tut wuri handayani."</p>
+      </div>
+      <div class="tokoh-card">
+        <div class="tokoh-icon">👸</div>
+        <h4>R.A. Kartini</h4>
+        <small>Pahlawan Emansipasi Wanita</small>
+        <p>Memperjuangkan hak pendidikan perempuan Indonesia. Surat-suratnya dibukukan: "Habis Gelap Terbitlah Terang".</p>
+      </div>
+      <div class="tokoh-card">
+        <div class="tokoh-icon">🕌</div>
+        <h4>H.O.S. Tjokroaminoto</h4>
+        <small>Raja Jawa Tanpa Mahkota</small>
+        <p>Pemimpin Sarekat Islam. Guru para tokoh besar: Soekarno, Musso, dan Kartosuwiryo adalah murid-muridnya.</p>
+      </div>
+      <div class="tokoh-card">
+        <div class="tokoh-icon">🗡️</div>
+        <h4>Pangeran Diponegoro</h4>
+        <small>Pahlawan Perang Jawa</small>
+        <p>Memimpin Perang Jawa (1825–1830) yang menyebabkan kerugian besar bagi Belanda. Ditangkap melalui tipu muslihat.</p>
+      </div>
+      <div class="tokoh-card">
+        <div class="tokoh-icon">🌺</div>
+        <h4>Cut Nyak Dien</h4>
+        <small>Pahlawan Aceh</small>
+        <p>Pejuang wanita dari Aceh yang melanjutkan perlawanan meski suaminya Teuku Umar gugur. Diasingkan Belanda ke Sumedang.</p>
+      </div>
+      <div class="tokoh-card">
+        <div class="tokoh-icon">🎺</div>
+        <h4>W.R. Supratman</h4>
+        <small>Pencipta Lagu Indonesia Raya</small>
+        <p>Mencipta dan memperdengarkan lagu "Indonesia Raya" pertama kali di Kongres Pemuda II, 28 Oktober 1928.</p>
+      </div>
+      <div class="tokoh-card">
+        <div class="tokoh-icon">⚓</div>
+        <h4>Pattimura (Thomas Matulessy)</h4>
+        <small>Pahlawan Maluku</small>
+        <p>Memimpin perlawanan rakyat Maluku terhadap VOC Belanda pada 1817. Berhasil merebut Benteng Duurstede di Saparua.</p>
+      </div>
+      <div class="tokoh-card">
+        <div class="tokoh-icon">🦁</div>
+        <h4>Sultan Hasanuddin</h4>
+        <small>Ayam Jantan dari Timur</small>
+        <p>Raja Gowa yang gigih melawan VOC. Dijuluki "Ayam Jantan dari Timur" oleh Belanda karena keberaniannya.</p>
+      </div>
+      <div class="tokoh-card">
+        <div class="tokoh-icon">🕊️</div>
+        <h4>Gus Dur (K.H. Abdurrahman Wahid)</h4>
+        <small>Presiden ke-4 / Tokoh Pluralisme</small>
+        <p>Ulama, cendekiawan, dan politisi. Dikenal sebagai pembela minoritas dan pluralisme. Mantan Ketua Umum PBNU.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer>
+  <div class="container">
+    <p><strong>🇮🇩 Sejarah Indonesia</strong></p>
+    <p>Referensi: Buku sejarah nasional, Kemendikbud RI, berbagai sumber akademik. Dibuat untuk keperluan edukasi.</p>
+    <p style="margin-top:10px; color:#666;">"Bangsa yang besar adalah bangsa yang menghormati jasa para pahlawannya." — Ir. Soekarno</p>
+  </div>
+</footer>
+
+<button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">▲</button>
+
+<script>
+  window.addEventListener('scroll', function(){
+    document.getElementById('scrollTop').style.display = window.scrollY > 300 ? 'block' : 'none';
+  });
+</script>
+
+</body>
+</html>
